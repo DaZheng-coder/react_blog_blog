@@ -2,7 +2,7 @@
  * @Author: DaZheng
  * @Date: 2020-12-01 14:51:09
  * @LastEditors: g05047
- * @LastEditTime: 2020-12-01 15:18:00
+ * @LastEditTime: 2020-12-01 15:35:41
  * @Description: file content
  */
 import React from 'react'
@@ -20,7 +20,7 @@ const Header = () => (
   <div className="header">
     <Row type="flex" justify="center">
       {/* 进行屏幕适配 */}
-      <Col xs={24} sm={24} md={10} lg={10} xl={10}>
+      <Col xs={24} sm={24} md={10} lg={15} xl={12}>
         <span className="header-logo">大大大正</span>
         <span className="header-txt">又菜又爱学</span> 
       </Col>

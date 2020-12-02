@@ -2,7 +2,7 @@
  * @Author: DaZheng
  * @Date: 2020-12-01 14:00:42
  * @LastEditors: g05047
- * @LastEditTime: 2020-12-02 10:55:10
+ * @LastEditTime: 2020-12-02 12:26:18
  * @Description: file content
  */
 import React, {useState} from 'react'
@@ -65,8 +65,8 @@ export default function Home() {
           <Author />
           <Advert />
         </Col>
-        <Footer />
       </Row>
+      <Footer />
     </div>
   )
 }

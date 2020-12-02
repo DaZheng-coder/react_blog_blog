@@ -2,7 +2,7 @@
  * @Author: DaZheng
  * @Date: 2020-12-01 15:58:54
  * @LastEditors: g05047
- * @LastEditTime: 2020-12-02 10:56:23
+ * @LastEditTime: 2020-12-02 12:26:06
  * @Description: file content
  */
 /* 列表页 */
@@ -73,8 +73,8 @@ export default function myList() {
           <Author />
           <Advert />
         </Col>
-        <Footer />
       </Row>
+      <Footer />
     </div>
   )
 }

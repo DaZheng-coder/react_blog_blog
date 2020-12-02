@@ -2,12 +2,13 @@
  * @Author: DaZheng
  * @Date: 2020-12-01 16:00:49
  * @LastEditors: g05047
- * @LastEditTime: 2020-12-02 12:55:30
+ * @LastEditTime: 2020-12-02 23:46:57
  * @Description: file content
  */
 /* 文章详情页 */
 import Head from 'next/head'
 import { Row, Col, Breadcrumb, Affix } from 'antd'
+import axios from 'axios'
 import Header from '../components/Header'
 import Author from '../components/Author'
 import Advert from '../components/Advert'
@@ -84,7 +85,7 @@ export default function Detailed() {
               <div className="list-icon center">
                   <span><HistoryOutlined />2019-06-28</span>
                   <span><TagsOutlined />视频教程</span>
-                  <span><FireOutlined />5900</span>
+                  <span><FireOutlined />5900人</span>
               </div>
               <div className="detailed-content">
                 <ReactMarkdown 
@@ -115,4 +116,18 @@ export default function Detailed() {
       <Footer />
     </div>
   )
+}
+
+Detailed.getInitialProps = async(context) => {
+  console.log(context.query.id)
+  let id = context.query.id
+  const promise = new Promise((resolve) => {
+    axios('http://127.0.0.1:7001/default/getArticleById/' + id).then(
+      (res) => {
+        console.log(res)
+        resolve(res.data.data[0])
+      }
+    )
+  })
+  return await promise
 }

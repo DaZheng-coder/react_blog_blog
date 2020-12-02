@@ -2,18 +2,20 @@
  * @Author: DaZheng
  * @Date: 2020-12-01 16:00:49
  * @LastEditors: g05047
- * @LastEditTime: 2020-12-02 12:38:52
+ * @LastEditTime: 2020-12-02 12:55:30
  * @Description: file content
  */
 /* 文章详情页 */
 import Head from 'next/head'
-import { Row, Col, Breadcrumb } from 'antd'
+import { Row, Col, Breadcrumb, Affix } from 'antd'
 import Header from '../components/Header'
 import Author from '../components/Author'
 import Advert from '../components/Advert'
 import Footer from '../components/Footer'
 import '../static/style/pages/detailed.css'
 import ReactMarkdown from 'react-markdown'
+import MarkNav from 'markdown-navbar'
+import 'markdown-navbar/dist/navbar.css'
 
 import {
   HistoryOutlined,
@@ -88,7 +90,6 @@ export default function Detailed() {
                 <ReactMarkdown 
                   source={markdown}
                   escapeHtml={false}
-                  
                 />
               </div>
             </div>
@@ -98,6 +99,17 @@ export default function Detailed() {
         <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4}>
           <Author />
           <Advert />   
+          <Affix offsetTop={5}>
+            <div className="detailed-nav comm-box">
+              <div className="nav-title">文章目录</div>
+              <MarkNav
+                className="article-menu"
+                source={markdown}
+                ordered={false}
+              />
+            </div>
+          </Affix>
+          
         </Col>
       </Row>
       <Footer />

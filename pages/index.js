@@ -2,7 +2,7 @@
  * @Author: DaZheng
  * @Date: 2020-12-01 14:00:42
  * @LastEditors: g05047
- * @LastEditTime: 2020-12-02 10:36:18
+ * @LastEditTime: 2020-12-02 10:55:10
  * @Description: file content
  */
 import React, {useState} from 'react'
@@ -12,6 +12,7 @@ import { Row, Col, List } from 'antd'
 import Header from '../components/Header'
 import Author from '../components/Author'
 import Advert from '../components/Advert'
+import Footer from '../components/Footer'
 // import styles from '../styles/Home.module.css'
 import '../static/style/pages/index.css'
 
@@ -64,6 +65,7 @@ export default function Home() {
           <Author />
           <Advert />
         </Col>
+        <Footer />
       </Row>
     </div>
   )

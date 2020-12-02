@@ -2,7 +2,7 @@
  * @Author: DaZheng
  * @Date: 2020-12-01 14:00:42
  * @LastEditors: g05047
- * @LastEditTime: 2020-12-02 08:47:50
+ * @LastEditTime: 2020-12-02 09:19:19
  * @Description: file content
  */
 import React, {useState} from 'react'
@@ -10,6 +10,7 @@ import Head from 'next/head'
 // import Link from 'next/link'
 import { Row, Col, List } from 'antd'
 import Header from '../components/Header'
+import Author from '../components/Author'
 // import styles from '../styles/Home.module.css'
 import '../static/style/pages/index.css'
 
@@ -59,7 +60,7 @@ export default function Home() {
         </Col>
         {/* 右侧 */}
         <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4}>
-          右侧
+          <Author />
         </Col>
       </Row>
     </div>

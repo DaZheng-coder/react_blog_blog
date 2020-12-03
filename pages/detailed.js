@@ -2,7 +2,7 @@
  * @Author: DaZheng
  * @Date: 2020-12-01 16:00:49
  * @LastEditors: g05047
- * @LastEditTime: 2020-12-03 00:32:27
+ * @LastEditTime: 2020-12-03 12:36:05
  * @Description: file content
  */
 /* 文章详情页 */
@@ -18,6 +18,8 @@ import marked from 'marked'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/monokai-sublime.css'
 import Tocify from '../components/tocify.tsx'
+
+import servicePath from '../config/apiUrl'
 
 // tocify.tsx jsx
 
@@ -114,7 +116,7 @@ Detailed.getInitialProps = async(context) => {
   console.log(context.query.id)
   let id = context.query.id
   const promise = new Promise((resolve) => {
-    axios('http://127.0.0.1:7001/default/getArticleById/' + id).then(
+    axios(servicePath.getArticleById + id).then(
       (res) => {
         console.log(res)
         resolve(res.data.data[0])

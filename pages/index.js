@@ -2,7 +2,7 @@
  * @Author: DaZheng
  * @Date: 2020-12-01 14:00:42
  * @LastEditors: g05047
- * @LastEditTime: 2020-12-02 21:46:26
+ * @LastEditTime: 2020-12-03 12:13:28
  * @Description: file content
  */
 import React, {useState} from 'react'
@@ -16,6 +16,8 @@ import Advert from '../components/Advert'
 import Footer from '../components/Footer'
 // import styles from '../styles/Home.module.css'
 import '../static/style/pages/index.css'
+
+import servicePath from '../config/apiUrl'
 
 import {
   HistoryOutlined,
@@ -71,7 +73,7 @@ export default function Home(list) {
 
 Home.getInitialProps = async () => {
   const promise = new Promise((resolve) => {
-    axios('http://127.0.0.1:7001/default/getArticleList').then(
+    axios(servicePath.getArticleList).then(
       (res) => {
         console.log('----->', res.data)
         resolve(res.data)

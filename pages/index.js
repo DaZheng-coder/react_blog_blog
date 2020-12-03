@@ -2,7 +2,7 @@
  * @Author: DaZheng
  * @Date: 2020-12-01 14:00:42
  * @LastEditors: g05047
- * @LastEditTime: 2020-12-03 12:13:28
+ * @LastEditTime: 2020-12-03 15:59:16
  * @Description: file content
  */
 import React, {useState} from 'react'
@@ -14,8 +14,11 @@ import Header from '../components/Header'
 import Author from '../components/Author'
 import Advert from '../components/Advert'
 import Footer from '../components/Footer'
-// import styles from '../styles/Home.module.css'
 import '../static/style/pages/index.css'
+
+import marked from 'marked'
+import hljs from 'highlight.js'
+import 'highlight.js/styles/monokai-sublime.css'
 
 import servicePath from '../config/apiUrl'
 
@@ -27,6 +30,25 @@ import {
 
 export default function Home(list) {
   const [mylist, setMylist] = useState(list.data)
+  const renderer = new marked.Renderer()
+  marked.setOptions({
+    renderer: renderer,
+    // 启动类似github样式的markdown
+    gfm: true,
+    // 是否容错代码
+    pedantic: false,
+    // 是否原始输出（忽略html例如视频什么的）
+    sanitize: false,
+    tables: true,
+    // 是否支持换行符
+    breaks: false,
+    // 是否自动渲染列表
+    smartLists: true,
+    highlight: (code) => {
+      // 自动检测返回代码，比较慢
+      return hljs.highlightAuto(code).value
+    }
+  })
   return (
     // <div className={styles.container}>
     <div>
@@ -55,7 +77,9 @@ export default function Home(list) {
                 <span><TagsOutlined />{item.typeName}</span>
                 <span><FireOutlined />{item.view_count}人</span>
                 </div>
-                <div className="list-context">{item.introduce}</div>
+                <div className="list-context"
+                  dangerouslySetInnerHTML={{__html: marked(item.introduce)}}
+                ></div>
               </List.Item>
             )}
           />
@@ -75,7 +99,6 @@ Home.getInitialProps = async () => {
   const promise = new Promise((resolve) => {
     axios(servicePath.getArticleList).then(
       (res) => {
-        console.log('----->', res.data)
         resolve(res.data)
       }
     )

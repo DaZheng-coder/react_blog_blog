@@ -2,7 +2,7 @@
  * @Author: DaZheng
  * @Date: 2020-12-01 15:58:54
  * @LastEditors: g05047
- * @LastEditTime: 2020-12-03 15:41:36
+ * @LastEditTime: 2020-12-03 16:27:18
  * @Description: file content
  */
 /* 列表页 */
@@ -19,6 +19,10 @@ import axios from 'axios'
 import servicePath from '../config/apiUrl'
 import Link from 'next/link'
 
+import marked from 'marked'
+import hljs from 'highlight.js'
+import 'highlight.js/styles/monokai-sublime.css'
+
 import {
   HistoryOutlined,
   TagsOutlined,
@@ -29,6 +33,26 @@ export default function myList(list) {
   const [mylist, setMylist] = useState(list.data.data)
   useEffect(() => {
     setMylist(list.data)
+  })
+  console.log(list.data)
+  const renderer = new marked.Renderer()
+  marked.setOptions({
+    renderer: renderer,
+    // 启动类似github样式的markdown
+    gfm: true,
+    // 是否容错代码
+    pedantic: false,
+    // 是否原始输出（忽略html例如视频什么的）
+    sanitize: false,
+    tables: true,
+    // 是否支持换行符
+    breaks: false,
+    // 是否自动渲染列表
+    smartLists: true,
+    highlight: (code) => {
+      // 自动检测返回代码，比较慢
+      return hljs.highlightAuto(code).value
+    }
   })
   return (
     // <div className={styles.container}>
@@ -45,7 +69,7 @@ export default function myList(list) {
           <div className="bread-div">
             <Breadcrumb>
               <Breadcrumb.Item><a href="/">首页</a></Breadcrumb.Item>
-              <Breadcrumb.Item>视频教程</Breadcrumb.Item>
+              <Breadcrumb.Item>{list.data[0].typeName}</Breadcrumb.Item>
             </Breadcrumb>
           </div>
           {/* 列表 */}
@@ -65,7 +89,9 @@ export default function myList(list) {
                   <span><TagsOutlined />{item.typeName}</span>
                   <span><FireOutlined />{item.view_count}</span>
                 </div>
-                <div className="list-context">{item.introduce}</div>
+                <div className="list-context"
+                  dangerouslySetInnerHTML={{__html: marked(item.introduce)}}
+                ></div>
               </List.Item>
             )}
           />

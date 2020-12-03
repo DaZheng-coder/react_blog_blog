@@ -2,7 +2,7 @@
  * @Author: DaZheng
  * @Date: 2020-12-01 16:00:49
  * @LastEditors: g05047
- * @LastEditTime: 2020-12-03 12:36:05
+ * @LastEditTime: 2020-12-03 16:10:02
  * @Description: file content
  */
 /* 文章详情页 */
@@ -75,18 +75,18 @@ export default function Detailed(props) {
             <div className="bread-div">
               <Breadcrumb>
                 <Breadcrumb.Item> <a href="/">首页</a> </Breadcrumb.Item>
-                <Breadcrumb.Item> <a href="/">视频列表</a> </Breadcrumb.Item>
-                <Breadcrumb.Item> xxx </Breadcrumb.Item>
+                <Breadcrumb.Item> <a href="/list?id=1">{props.typeName}</a> </Breadcrumb.Item>
+                <Breadcrumb.Item> {props.title} </Breadcrumb.Item>
               </Breadcrumb>
             </div>
             <div>
               <div className="detailed-title">
-                React实战视频教程-测试用的详细标题，各种巴拉巴拉巴拉
+                {props.title}
               </div>
               <div className="list-icon center">
-                  <span><HistoryOutlined />2019-06-28</span>
-                  <span><TagsOutlined />视频教程</span>
-                  <span><FireOutlined />5900人</span>
+                  <span><HistoryOutlined />{props.addTime}</span>
+                  <span><TagsOutlined />{props.typeName}</span>
+                  <span><FireOutlined />{props.view_count}人</span>
               </div>
               <div className="detailed-content"
                 dangerouslySetInnerHTML={{__html: html}}>
@@ -104,7 +104,6 @@ export default function Detailed(props) {
                 {tocify && tocify.render()}
             </div>
           </Affix>
-          
         </Col>
       </Row>
       <Footer />

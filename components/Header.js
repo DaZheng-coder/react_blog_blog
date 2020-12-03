@@ -2,7 +2,7 @@
  * @Author: DaZheng
  * @Date: 2020-12-01 14:51:09
  * @LastEditors: g05047
- * @LastEditTime: 2020-12-03 12:57:00
+ * @LastEditTime: 2020-12-03 15:42:45
  * @Description: file content
  */
 import React, { useState, useEffect } from 'react'
@@ -34,7 +34,7 @@ const Header = () => {
 
   const handleClick = (e) => {
     if (e.key == 0) {
-      Router.push('/index')
+      Router.push('/')
     } else {
       Router.push('/list?id=' + e.key)
     }
@@ -67,7 +67,6 @@ const Header = () => {
                 )
               })
             }
-            
           </Menu>
         </Col>
       </Row>

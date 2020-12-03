@@ -2,7 +2,7 @@
  * @Author: DaZheng
  * @Date: 2020-12-01 16:00:49
  * @LastEditors: g05047
- * @LastEditTime: 2020-12-03 00:11:21
+ * @LastEditTime: 2020-12-03 00:32:27
  * @Description: file content
  */
 /* 文章详情页 */
@@ -14,11 +14,12 @@ import Author from '../components/Author'
 import Advert from '../components/Advert'
 import Footer from '../components/Footer'
 import '../static/style/pages/detailed.css'
-import MarkNav from 'markdown-navbar'
-import 'markdown-navbar/dist/navbar.css'
 import marked from 'marked'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/monokai-sublime.css'
+import Tocify from '../components/tocify.tsx'
+
+// tocify.tsx jsx
 
 import {
   HistoryOutlined,
@@ -29,6 +30,13 @@ import {
 export default function Detailed(props) {
   
   const renderer = new marked.Renderer()
+  const tocify = new Tocify()
+
+  // 等级 文本
+  renderer.heading = function (text, level, raw) {
+    const anchor = tocify.add(text, level)
+    return `<a id="${anchor}" href="#${anchor}" class="anchor-fix"><h${level}>${text}</h${level}></a></a>\n`
+  }
   
   marked.setOptions({
     renderer: renderer,
@@ -80,7 +88,6 @@ export default function Detailed(props) {
               </div>
               <div className="detailed-content"
                 dangerouslySetInnerHTML={{__html: html}}>
-                
               </div>
             </div>
           </div>
@@ -92,11 +99,7 @@ export default function Detailed(props) {
           <Affix offsetTop={5}>
             <div className="detailed-nav comm-box">
               <div className="nav-title">文章目录</div>
-              <MarkNav
-                className="article-menu"
-                source={html}
-                ordered={false}
-              />
+                {tocify && tocify.render()}
             </div>
           </Affix>
           

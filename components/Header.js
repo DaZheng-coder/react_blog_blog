@@ -2,7 +2,7 @@
  * @Author: DaZheng
  * @Date: 2020-12-01 14:51:09
  * @LastEditors: g05047
- * @LastEditTime: 2020-12-03 15:42:45
+ * @LastEditTime: 2020-12-07 15:45:38
  * @Description: file content
  */
 import React, { useState, useEffect } from 'react'
@@ -50,7 +50,7 @@ const Header = () => {
           <span className="header-logo">大大大正</span>
           <span className="header-txt">又菜又爱学</span> 
         </Col>
-        <Col xs={0} sm={0} md={14} lg={8} xl={6}>
+        <Col xs={0} sm={0} md={14} lg={8} xl={10}>
           <Menu mode="horizontal" onClick={handleClick}>
             <Menu.Item key="0">
               <HomeIcon />

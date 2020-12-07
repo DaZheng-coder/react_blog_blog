@@ -2,7 +2,7 @@
  * @Author: DaZheng
  * @Date: 2020-12-02 09:04:28
  * @LastEditors: g05047
- * @LastEditTime: 2020-12-02 10:29:48
+ * @LastEditTime: 2020-12-07 15:42:48
  * @Description: file content
  */
 import { Avatar, Divider } from 'antd'
@@ -16,7 +16,7 @@ import {
 const Author = () => {
   return (
     <div className="author-div comm-box">
-      <div> <Avatar size={100} src="http://blogimages.jspang.com/blogtouxiang1.jpg" /> </div>
+      <div> <Avatar size={100} src="../static/img/avatar.jpg" /> </div>
       <div className="author-introduction">
         天天掉发程序员，又菜又爱学
         <Divider>社交账号</Divider>
